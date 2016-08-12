@@ -18,6 +18,13 @@ def home(request):
 	output = ', '.join([q.question_text for q in latest_question_list])
 	return HttpResponse(output)
 
+def home1(request):
+	t=get_template("index.html")
+	html = t.render(Context({
+		"template_dir":settings.TEMPLATE_DIRS[0],
+		"title":"Home",
+		"static_dir":settings.STATIC_ROOT}))
+	return HttpResponse(html)
 
 def detail(request, question_id):
 	question = get_object_or_404(Question,pk=question_id)
